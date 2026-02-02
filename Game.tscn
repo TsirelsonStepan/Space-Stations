@@ -1,0 +1,165 @@
+[gd_scene load_steps=12 format=3 uid="uid://cdt1bj4nw5ono"]
+
+[ext_resource type="PackedScene" uid="uid://s07y1qwdw8sf" path="res://module_scenes/module.tscn" id="1_4wkrg"]
+[ext_resource type="Script" path="res://scripts/control.gd" id="1_ryatt"]
+[ext_resource type="Script" path="res://scripts/builder.gd" id="2_6cqmi"]
+[ext_resource type="Texture2D" uid="uid://d2rtuh2ld4ff3" path="res://icons/icon_dock.png" id="3_58i8q"]
+[ext_resource type="Script" path="res://scripts/camera_movement.gd" id="3_gpeo0"]
+[ext_resource type="Texture2D" uid="uid://cc6dirmyi0pde" path="res://icons/icon_module.png" id="4_826m8"]
+[ext_resource type="Script" path="res://scripts/dock_button_script.gd" id="4_j1mpq"]
+[ext_resource type="Script" path="res://scripts/module_window.gd" id="6_rbp71"]
+[ext_resource type="Script" path="res://scripts/module_button_script.gd" id="6_tcmks"]
+[ext_resource type="Script" path="res://scripts/station_loader.gd" id="10_a7tvn"]
+
+[sub_resource type="Environment" id="Environment_f62il"]
+background_energy_multiplier = 0.0
+
+[node name="Origin" type="Node3D"]
+
+[node name="Loader" type="Node" parent="."]
+script = ExtResource("10_a7tvn")
+
+[node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_ryatt")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 50.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "B"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(136, 136)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -140.0
+offset_right = -2.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/ScrollContainer"]
+custom_minimum_size = Vector2(136, 136)
+layout_mode = 2
+
+[node name="dock" type="Button" parent="Control/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 46
+icon = ExtResource("3_58i8q")
+icon_alignment = 1
+script = ExtResource("4_j1mpq")
+
+[node name="module" type="Button" parent="Control/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_826m8")
+script = ExtResource("6_tcmks")
+
+[node name="ModuleWindow" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -59.0
+offset_right = 110.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_rbp71")
+
+[node name="Label" type="Label" parent="Control/ModuleWindow"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "_specialization_"
+
+[node name="Close" type="Button" parent="Control/ModuleWindow"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
+
+[node name="DockWindow" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -59.0
+offset_right = 110.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_rbp71")
+
+[node name="Label" type="Label" parent="Control/DockWindow"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "_specialization_"
+
+[node name="Close" type="Button" parent="Control/DockWindow"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
+
+[node name="Builder" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_6cqmi")
+
+[node name="StationHolder" type="Node3D" parent="."]
+
+[node name="default-module_1" parent="StationHolder" instance=ExtResource("1_4wkrg")]
+
+[node name="CameraHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+rotation_order = 3
+
+[node name="Camera" type="Camera3D" parent="CameraHolder"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+environment = SubResource("Environment_f62il")
+current = true
+fov = 80.0
+script = ExtResource("3_gpeo0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 100, 70, 100)
+light_bake_mode = 1
+sky_mode = 1
+
+[connection signal="pressed" from="Control/Button" to="Control" method="_on_build_button_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/HBoxContainer/dock" to="Control/ScrollContainer/HBoxContainer/dock" method="_on_pressed"]
+[connection signal="pressed" from="Control/ScrollContainer/HBoxContainer/module" to="Control/ScrollContainer/HBoxContainer/module" method="_on_pressed"]
+[connection signal="gui_input" from="Control/ModuleWindow" to="Control/ModuleWindow" method="_on_gui_input"]
+[connection signal="pressed" from="Control/ModuleWindow/Close" to="Control/ModuleWindow" method="_on_button_pressed"]
+[connection signal="gui_input" from="Control/DockWindow" to="Control/DockWindow" method="_on_gui_input"]
+[connection signal="pressed" from="Control/DockWindow/Close" to="Control/DockWindow" method="_on_button_pressed"]

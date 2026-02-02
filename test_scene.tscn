@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dttoex5bdj1fr"]
+
+[ext_resource type="PackedScene" uid="uid://hoosfxbao7l7" path="res://module_scenes/dock.tscn" id="1_l33i2"]
+
+[node name="test_scene" type="Node3D"]
+
+[node name="dock_" parent="." instance=ExtResource("1_l33i2")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.50119)
