@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3gflfkwfn5ir"]
+
+[ext_resource type="PackedScene" uid="uid://cmh5u0aqxc2dq" path="res://Assets/Blend/default_splitter.blend" id="1_y70lj"]
+[ext_resource type="Script" uid="uid://qurqhi1yaq8u" path="res://Scripts/general_collider.gd" id="2_vloc7"]
+[ext_resource type="Script" uid="uid://bmsas4mqugj12" path="res://Scripts/dock_places.gd" id="3_5hwd3"]
+[ext_resource type="Material" uid="uid://l2ej2coypgtr" path="res://Materials/Highlight/Connectors/small.tres" id="4_m8t0u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_snpue"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_joc3r"]
+height = 0.05
+radius = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pnjsl"]
+material = ExtResource("4_m8t0u")
+top_radius = 0.38
+bottom_radius = 0.38
+height = 0.05
+
+[node name="default_splitter" type="Node3D"]
+process_mode = 4
+
+[node name="Mesh" parent="." instance=ExtResource("1_y70lj")]
+
+[node name="GeneralCollider" type="StaticBody3D" parent="."]
+script = ExtResource("2_vloc7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GeneralCollider"]
+shape = SubResource("BoxShape3D_snpue")
+
+[node name="DockPlaces" type="Node3D" parent="."]
+script = ExtResource("3_5hwd3")
+
+[node name="Upper" type="StaticBody3D" parent="DockPlaces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DockPlaces/Upper"]
+shape = SubResource("CylinderShape3D_joc3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DockPlaces/Upper"]
+mesh = SubResource("CylinderMesh_pnjsl")
+
+[node name="Lower" type="StaticBody3D" parent="DockPlaces"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.6, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DockPlaces/Lower"]
+shape = SubResource("CylinderShape3D_joc3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DockPlaces/Lower"]
+mesh = SubResource("CylinderMesh_pnjsl")
+
+[node name="Right" type="StaticBody3D" parent="DockPlaces"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.6, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DockPlaces/Right"]
+shape = SubResource("CylinderShape3D_joc3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DockPlaces/Right"]
+mesh = SubResource("CylinderMesh_pnjsl")
+
+[node name="Left" type="StaticBody3D" parent="DockPlaces"]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, 0.6, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DockPlaces/Left"]
+shape = SubResource("CylinderShape3D_joc3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DockPlaces/Left"]
+mesh = SubResource("CylinderMesh_pnjsl")
+
+[node name="Front" type="StaticBody3D" parent="DockPlaces"]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, 1, 1, 0, 4.37114e-08, 0, 1, -4.37114e-08, 0, 0, 0.6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DockPlaces/Front"]
+shape = SubResource("CylinderShape3D_joc3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DockPlaces/Front"]
+mesh = SubResource("CylinderMesh_pnjsl")
+
+[node name="Back" type="StaticBody3D" parent="DockPlaces"]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, 1, 0, -4.37114e-08, 0, -1, -4.37114e-08, 0, 0, -0.6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DockPlaces/Back"]
+shape = SubResource("CylinderShape3D_joc3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DockPlaces/Back"]
+mesh = SubResource("CylinderMesh_pnjsl")

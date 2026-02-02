@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ifn7tbcs36g6"]
+
+[ext_resource type="Script" uid="uid://dsviuqsjfgp63" path="res://Scripts/builder.gd" id="1_h1ki1"]
+
+[node name="Builder" type="Node3D"]
+script = ExtResource("1_h1ki1")
+
+[node name="ConstructionTimer" type="Timer" parent="."]

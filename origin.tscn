@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5p3ji2ev2fh"]
+
+[ext_resource type="Script" uid="uid://chdi4ibl70oki" path="res://testing.gd" id="1_0yw3f"]
+[ext_resource type="Script" uid="uid://qaccj4lk15qj" path="res://Scripts/planner.gd" id="2_ft6ov"]
+[ext_resource type="Script" uid="uid://ct73fbj0s02nn" path="res://Scripts/camera_movement.gd" id="4_api85"]
+[ext_resource type="PackedScene" uid="uid://bk5pmarxua6je" path="res://UI Scenes/UI.tscn" id="4_w53r7"]
+
+[node name="Origin" type="Node3D"]
+script = ExtResource("1_0yw3f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.852376, 0.52293, 0, -0.52293, 0.852376, 0, 4.86761, 4.08293)
+sky_mode = 1
+
+[node name="StationHolder" type="Node3D" parent="."]
+script = ExtResource("2_ft6ov")
+
+[node name="CameraHolder" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+script = ExtResource("4_api85")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("4_w53r7")]

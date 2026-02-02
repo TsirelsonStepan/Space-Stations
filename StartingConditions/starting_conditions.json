@@ -1,0 +1,32 @@
+{
+	"structure_data":
+		{
+			"modules_data":
+				{
+					"0" : [0, "none", "default_splitter", "OPERATING"]
+				},
+			"modules_transforms":
+				{
+					"0" : [[0, 0, 0], [0, 0, 0]]
+				}
+		},
+	"storage_data":
+		{
+			"resources":
+				{
+					"water" : 30,
+					"oxygen" : 100,
+					"food" : 20,
+					"steel_plates" : 800,
+					"steel_bars" : 400
+				},
+			"limits":
+				{
+					"water" : 100,
+					"oxygen" : 200,
+					"food" : 50,
+					"steel_plates" : 1000,
+					"steel_bars" : 500
+				}
+		}
+}

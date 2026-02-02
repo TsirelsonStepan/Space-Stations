@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk5pmarxua6je"]
+
+[ext_resource type="PackedScene" uid="uid://4jyjhogt1dl1" path="res://UI Scenes/top_bar.tscn" id="1_axu4r"]
+[ext_resource type="PackedScene" uid="uid://bkucl342uo7k8" path="res://UI Scenes/module_window.tscn" id="2_p8tjf"]
+[ext_resource type="PackedScene" uid="uid://dl6w4fbi4yk36" path="res://UI Scenes/blueprint_panel.tscn" id="3_g6l6n"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="TopBar" parent="." instance=ExtResource("1_axu4r")]
+layout_mode = 1
+
+[node name="ModuleWindow" parent="." instance=ExtResource("2_p8tjf")]
+layout_mode = 1
+
+[node name="BlueprintPanel" parent="." instance=ExtResource("3_g6l6n")]
+layout_mode = 1

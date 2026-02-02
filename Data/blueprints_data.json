@@ -1,0 +1,16 @@
+{
+	"default_module":
+		{
+			"cost" : {"steel_bars":10, "steel_plates":5},
+			"time" : 0.1,
+			"connector" : "small",
+			"size" : [2, 2.6, 2]
+		},
+	"default_splitter":
+		{
+			"cost" : {"steel_bars":5, "steel_plates":1},
+			"time" : 0.2,
+			"connector" : "small",
+			"size" : [1.2, 1.2, 1.2]
+		}
+}
